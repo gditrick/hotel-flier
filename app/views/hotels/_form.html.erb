@@ -1,0 +1,23 @@
+<%= form_for @hotel do |f| %>
+  <h3 class="details">Hotel Details</h3>
+
+  <div class="group">
+    <div class="field text">
+      <%= f.text_field :name, placeholder: 'Name' %>
+    </div>
+    <div class="field text">
+      <%= f.text_field :address, placeholder: 'Address' %>
+    </div>
+    <div class="field text">
+      <%= f.text_field :phone, placeholder: 'Phone' %>
+    </div>
+    <div class="field text">
+      <%= f.text_field :website, placeholder: 'Official Website' %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= f.button :class => "button" %>
+    <%= link_to 'Cancel', home_path, class: 'button', confirm: "Are you sure you want to cancel?\nUnsaved changes will be lost." %>
+  </div>
+<% end %>

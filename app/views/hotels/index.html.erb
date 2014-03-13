@@ -1,0 +1,43 @@
+<div id="hotels" class="index listings container">
+  <div class="header">
+    <h2>Hotels</h2>
+    <%= link_to 'New', new_hotel_path %>
+  </div>
+
+  <div class="results">
+    <table>
+      <thead>
+        <tr>
+          <th class="text-center">Name</th>
+          <th class="text-center">Address</th>
+          <th class="text-center">Phone</th>
+          <th class="text-center">Flier</th>
+          <th class="text-center" colspan="2">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @hotels.each do |hotel| %>
+          <tr class="<%= cycle('odd', 'even') %>">
+            <td><%= link_to hotel.name, hotel.website %></td>
+            <td><%= hotel.address %></td>
+            <td><%= hotel.phone %></td>
+            <% if hotel.current_flier %>
+              <td>
+                <%= link_to hotel.current_flier.day, hotel_hotel_flier_path(hotel, hotel.current_flier) %>
+              </td>
+            <% end %>
+            <td>
+              <%= link_to 'Edit', edit_hotel_path(hotel) %>
+            </td>
+            <td>
+              <%= form_for([hotel, hotel.current_flier || @hotel_flier]) do |f| %>
+                 <%= f.hidden_field :day %>
+                 <%= f.button class: 'button' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
